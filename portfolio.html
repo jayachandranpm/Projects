@@ -1,0 +1,1648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-void: #050505;
+            --bg-deep: #0a0a0a;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --bg-card-hover: rgba(255, 255, 255, 0.06);
+            --border-subtle: rgba(255, 255, 255, 0.08);
+            --text-primary: #FFFFFF;
+            --text-secondary: #A1A1AA;
+            --text-tertiary: #52525B;
+            --accent-purple: #CB68FF;
+            --accent-cyan: #00B2FF;
+            --gradient-primary: linear-gradient(135deg, #CB68FF 0%, #00B2FF 100%);
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --radius-pill: 9999px;
+            --font-main: 'Manrope', sans-serif;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-void);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 50px 50px;
+            padding: 60px 20px;
+        }
+
+        .glow-orb {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(203, 104, 255, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
+            filter: blur(80px);
+        }
+
+        .orb-1 {
+            top: -200px;
+            left: -100px;
+        }
+
+        .orb-2 {
+            bottom: -200px;
+            right: -100px;
+            background: radial-gradient(circle, rgba(0, 178, 255, 0.06) 0%, transparent 70%);
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 800;
+            letter-spacing: -0.02em;
+        }
+
+        .text-accent-gradient {
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .section-tag {
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--accent-cyan);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 4rem;
+            color: white;
+        }
+
+        .project-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            margin-bottom: 4rem;
+            transition: var(--transition);
+        }
+
+        .project-card:hover {
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 30px rgba(0, 178, 255, 0.15);
+        }
+
+        .project-tags {
+            padding: 2rem 2.5rem 0;
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.4rem 1rem;
+            border-radius: var(--radius-pill);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .project-content {
+            padding: 1.5rem 2.5rem 2.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .project-title h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-title a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .project-title a:hover {
+            color: var(--accent-cyan);
+        }
+
+        .narrative-block {
+            margin-bottom: 1.5rem;
+        }
+
+        .narrative-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .c-problem { color: #FF4D4D; }
+        .c-solution { color: #4D94FF; }
+        .c-impact { color: #00E599; }
+
+        .narrative-text {
+            color: var(--text-secondary);
+            font-size: 1rem;
+        }
+
+        .btn-tech-overview {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(0, 178, 255, 0.1);
+            border: 1px solid rgba(0, 178, 255, 0.3);
+            color: var(--accent-cyan);
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius-pill);
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 1rem;
+        }
+
+        .btn-tech-overview:hover {
+            background: rgba(0, 178, 255, 0.2);
+            border-color: var(--accent-cyan);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 178, 255, 0.3);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            overflow-y: auto;
+            padding: 40px 20px;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: var(--bg-deep);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-lg);
+            max-width: 1600px;
+            width: 98%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideIn 0.3s ease;
+            margin-top: 40px;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            padding: 30px 40px;
+            border-bottom: 1px solid var(--border-subtle);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            background: var(--bg-deep);
+            z-index: 10;
+        }
+
+        .modal-header h2 {
+            font-size: 28px;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .close-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-subtle);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            color: var(--text-secondary);
+            font-size: 20px;
+        }
+
+        .close-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(90deg);
+            color: white;
+        }
+
+        .modal-body {
+            padding: 40px;
+            overflow-x: hidden;
+        }
+
+        .architecture-section {
+            margin-bottom: 40px;
+            width: 100%;
+        }
+
+        .architecture-section h3 {
+            font-size: 24px;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .architecture-diagram {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .layer {
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: var(--radius-sm);
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 4px solid var(--accent-cyan);
+        }
+
+        .layer h4 {
+            font-size: 18px;
+            color: var(--accent-cyan);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .layer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        .component {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-weight: 500;
+            border: 1px solid var(--border-subtle);
+        }
+
+        .flow-arrow {
+            text-align: center;
+            color: var(--accent-cyan);
+            font-size: 24px;
+            margin: 10px 0;
+        }
+
+        .tech-detail {
+            background: rgba(203, 104, 255, 0.05);
+            border: 1px solid rgba(203, 104, 255, 0.2);
+            padding: 16px;
+            border-radius: var(--radius-sm);
+            margin-bottom: 12px;
+        }
+
+        .tech-detail h5 {
+            font-size: 16px;
+            color: var(--accent-purple);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .tech-detail p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .api-endpoint {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-sm);
+            padding: 16px;
+            margin-bottom: 12px;
+        }
+
+        .api-method {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 12px;
+        }
+
+        .method-post {
+            background: #4caf50;
+            color: white;
+        }
+
+        .method-get {
+            background: #2196f3;
+            color: white;
+        }
+
+        .api-path {
+            font-family: 'Courier New', monospace;
+            color: var(--accent-cyan);
+            font-size: 14px;
+        }
+
+        .api-description {
+            margin-top: 8px;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* Visual Architecture Styles */
+        .architecture-diagram-image {
+            width: 100% !important;
+            margin: 20px 0;
+            overflow: visible !important;
+            background: #0a0a0a;
+            border-radius: 8px;
+            padding: 20px;
+            box-sizing: border-box !important;
+            display: block !important;
+        }
+
+
+        .architecture-img {
+            display: block !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            height: auto !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            border-radius: 8px;
+            object-fit: contain !important;
+        }
+
+        .diagram-note {
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-style: italic;
+            margin-top: 15px;
+            line-height: 1.6;
+            max-width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .project-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 1.5rem;
+            }
+
+            .project-tags {
+                padding: 1.5rem 1.5rem 0;
+            }
+
+            .modal-content {
+                margin: 10px;
+                width: calc(100% - 20px);
+            }
+
+            .modal-header, .modal-body {
+                padding: 20px;
+            }
+
+            .layer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .architecture-diagram-image {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+
+    <main class="container">
+        <section id="projects">
+            <span class="section-tag">Portfolio</span>
+            <h2 class="section-title">Selected Works</h2>
+
+            <!-- InsightGraph Project -->
+            <div class="project-card">
+                <div class="project-tags">
+                    <span class="tag">Data Viz</span>
+                    <span class="tag">RAG</span>
+                    <span class="tag">Python</span>
+                    <span class="tag">Flask</span>
+                    <span class="tag">MySQL</span>
+                    <span class="tag">Gemini AI</span>
+                </div>
+                <div class="project-content">
+                    <div class="project-title">
+                        <h3>
+                            <a href="https://jayachandranpm.pythonanywhere.com/" target="_blank">
+                                InsightGraph <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.6em; vertical-align: middle;"></i>
+                            </a>
+                        </h3>
+                        <p style="color:var(--text-secondary);">Interactive knowledge discovery engine.</p>
+                    </div>
+                    <div class="project-narrative">
+                        <div class="narrative-block">
+                            <div class="narrative-label c-problem">
+                                <i class="fa-solid fa-circle-exclamation"></i> Problem
+                            </div>
+                            <p class="narrative-text">Traditional search returns flat lists, missing the rich network of relationships and context that connects information meaningfully.</p>
+                        </div>
+                        <div class="narrative-block">
+                            <div class="narrative-label c-solution">
+                                <i class="fa-solid fa-bolt"></i> Solution
+                            </div>
+                            <p class="narrative-text">AI-powered knowledge graph generator using Gemini to extract entities and relationships, visualized with Force-Graph 3D for spatial exploration.</p>
+                        </div>
+                        <div class="narrative-block">
+                            <div class="narrative-label c-impact">
+                                <i class="fa-solid fa-chart-line"></i> Impact
+                            </div>
+                            <p class="narrative-text">Enables serendipitous discovery through interactive node expansion, revealing hidden connections impossible with linear search.</p>
+                        </div>
+                        <button class="btn-tech-overview" onclick="openModal('insightgraph')">
+                            <i class="fa-solid fa-code"></i> Technical Overview
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Zia RAG Bot -->
+            <div class="project-card">
+                <div class="project-tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">RAG</span>
+                    <span class="tag">ChromaDB</span>
+                    <span class="tag">NLP</span>
+                </div>
+                <div class="project-content">
+                    <div class="project-title">
+                        <h3>
+                            <a href="https://botzohocrm.pythonanywhere.com/" target="_blank">
+                                Zia RAG Bot (Zoho CRM) <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.6em; vertical-align: middle;"></i>
+                            </a>
+                        </h3>
+                        <p style="color:var(--text-secondary);">Conversational AI for Zoho CRM's Knowledge Base.</p>
+                    </div>
+                    <div class="project-narrative">
+                        <div class="narrative-block">
+                            <div class="narrative-label c-problem">
+                                <i class="fa-solid fa-circle-exclamation"></i> Problem
+                            </div>
+                            <p class="narrative-text">Zoho CRM users struggle to find specific answers in extensive documentation, leading to support ticket overload and reduced productivity.</p>
+                        </div>
+                        <div class="narrative-block">
+                            <div class="narrative-label c-solution">
+                                <i class="fa-solid fa-bolt"></i> Solution
+                            </div>
+                            <p class="narrative-text">Hybrid RAG system combining BM25 keyword search, Hnswlib vector embeddings, and Reciprocal Rank Fusion for optimal retrieval accuracy.</p>
+                        </div>
+                        <div class="narrative-block">
+                            <div class="narrative-label c-impact">
+                                <i class="fa-solid fa-chart-line"></i> Impact
+                            </div>
+                            <p class="narrative-text">Delivers instant, citation-backed answers with supervised learning layer for high-accuracy responses to common queries.</p>
+                        </div>
+                        <button class="btn-tech-overview" onclick="openModal('ziabot')">
+                            <i class="fa-solid fa-code"></i> Technical Overview
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Arbor -->
+            <div class="project-card">
+                <div class="project-tags">
+                    <span class="tag">Generative AI</span>
+                    <span class="tag">Search</span>
+                    <span class="tag">Productivity</span>
+                    <span class="tag">RAG</span>
+                </div>
+                <div class="project-content">
+                    <div class="project-title">
+                        <h3>
+                            <a href="https://arbor.pythonanywhere.com/" target="_blank">
+                                Arbor - Deep Research AI <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.6em; vertical-align: middle;"></i>
+                            </a>
+                        </h3>
+                        <p style="color:var(--text-secondary);">A dual-mode research agent that reads, reasons, and cites.</p>
+                    </div>
+                    <div class="project-narrative">
+                        <div class="narrative-block">
+                            <div class="narrative-label c-problem">
+                                <i class="fa-solid fa-circle-exclamation"></i> Problem
+                            </div>
+                            <p class="narrative-text">LLM hallucinations and lack of source verification make AI unreliable for research requiring factual accuracy and citations.</p>
+                        </div>
+                        <div class="narrative-block">
+                            <div class="narrative-label c-solution">
+                                <i class="fa-solid fa-bolt"></i> Solution
+                            </div>
+                            <p class="narrative-text">Dual-mode research engine with real-time web scraping, DuckDuckGo search, and mandatory citation grounding using Gemini 2.5 Flash.</p>
+                        </div>
+                        <div class="narrative-block">
+                            <div class="narrative-label c-impact">
+                                <i class="fa-solid fa-chart-line"></i> Impact
+                            </div>
+                            <p class="narrative-text">Reduces hallucinations by ~90% with inline citations, Chain-of-Thought reasoning, and export to DOCX/PDF for professional reports.</p>
+                        </div>
+                        <button class="btn-tech-overview" onclick="openModal('arbor')">
+                            <i class="fa-solid fa-code"></i> Technical Overview
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Anne's Diary -->
+            <div class="project-card">
+                <div class="project-tags">
+                    <span class="tag">Educational</span>
+                    <span class="tag">AI Chat</span>
+                    <span class="tag">History</span>
+                    <span class="tag">Gemini AI</span>
+                </div>
+                <div class="project-content">
+                    <div class="project-title">
+                        <h3>
+                            <a href="https://jayachandranpm.github.io/The-Diary-of-a-Young-Girl/website/index.html" target="_blank">
+                                Anne's Diary <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.6em; vertical-align: middle;"></i>
+                            </a>
+                        </h3>
+                        <p style="color:var(--text-secondary);">Interactive tribute to Anne Frank with AI-powered conversations.</p>
+                    </div>
+                    <div class="project-narrative">
+                        <div class="narrative-block">
+                            <div class="narrative-label c-problem">
+                                <i class="fa-solid fa-circle-exclamation"></i> Problem
+                            </div>
+                            <p class="narrative-text">Historical education feels distant and passive, failing to create emotional connections that make learning memorable and impactful.</p>
+                        </div>
+                        <div class="narrative-block">
+                            <div class="narrative-label c-solution">
+                                <i class="fa-solid fa-bolt"></i> Solution
+                            </div>
+                            <p class="narrative-text">Interactive multimedia platform with AI-powered chat (Gemini), NotebookLM-generated audio/video, and PDF context extraction for authentic conversations.</p>
+                        </div>
+                        <div class="narrative-block">
+                            <div class="narrative-label c-impact">
+                                <i class="fa-solid fa-chart-line"></i> Impact
+                            </div>
+                            <p class="narrative-text">Transforms passive reading into active dialogue, creating personal connections with history through AI-generated multimedia content.</p>
+                        </div>
+                        <button class="btn-tech-overview" onclick="openModal('annesdiary')">
+                            <i class="fa-solid fa-code"></i> Technical Overview
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EduElements -->
+            <div class="project-card">
+                <div class="project-tags">
+                    <span class="tag">EdTech</span>
+                    <span class="tag">Gamification</span>
+                    <span class="tag">Marketplace</span>
+                    <span class="tag">UX Design</span>
+                </div>
+                <div class="project-content">
+                    <div class="project-title">
+                        <h3>
+                            <a href="COMPLETE-APP.html" target="_blank">
+                                EduElements <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 0.6em; vertical-align: middle;"></i>
+                            </a>
+                        </h3>
+                        <p style="color:var(--text-secondary);">Gamified learning rewards marketplace.</p>
+                    </div>
+                    <div class="project-narrative">
+                        <div class="narrative-block">
+                            <div class="narrative-label c-problem">
+                                <i class="fa-solid fa-circle-exclamation"></i> Problem
+                            </div>
+                            <p class="narrative-text">Online course completion rates average 15% due to lack of intrinsic motivation and tangible rewards for consistent learning.</p>
+                        </div>
+                        <div class="narrative-block">
+                            <div class="narrative-label c-solution">
+                                <i class="fa-solid fa-bolt"></i> Solution
+                            </div>
+                            <p class="narrative-text">High-fidelity wireframe showcasing a two-sided marketplace with gamification: streak systems, achievement badges, and redeemable learning credits (1 LC = ₹1).</p>
+                        </div>
+                        <div class="narrative-block">
+                            <div class="narrative-label c-impact">
+                                <i class="fa-solid fa-chart-line"></i> Impact
+                            </div>
+                            <p class="narrative-text">Design demonstrates behavioral psychology principles (variable rewards, social proof, progress visualization) targeting 45% completion rate (3x industry average).</p>
+                        </div>
+                        <button class="btn-tech-overview" onclick="openModal('eduelements')">
+                            <i class="fa-solid fa-code"></i> Technical Overview
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- InsightGraph Technical Modal -->
+    <div id="modal-insightgraph" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fa-solid fa-diagram-project"></i> InsightGraph - Technical Architecture</h2>
+                <button class="close-btn" onclick="closeModal('insightgraph')">
+                    <i class="fa-solid fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="architecture-section">
+                    <h3><i class="fa-solid fa-layer-group"></i> System Architecture</h3>
+                    <div class="architecture-diagram-image">
+                        <img src="diagrams/insightgraph-architecture.png" alt="InsightGraph System Architecture" class="architecture-img">
+                        <p class="diagram-note">AI-powered knowledge graph generator using Gemini to extract entities and relationships, visualized with Force-Graph 3D for spatial exploration.</p>
+                    </div>
+                </div>
+
+                <div class="architecture-section">
+                    <h3><i class="fa-solid fa-database"></i> Database Schema</h3>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-table"></i> Sessions Table</h5>
+                        <p><strong>Purpose:</strong> Stores user sessions and topics<br>
+                        <strong>Fields:</strong> id (PK), topic, created_at<br>
+                        <strong>Relationships:</strong> One-to-Many with Nodes, Links, Messages</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-circle-nodes"></i> Nodes Table</h5>
+                        <p><strong>Purpose:</strong> Stores graph entities/nodes<br>
+                        <strong>Fields:</strong> id (PK), session_id (FK), label, group, details, val, status<br>
+                        <strong>Groups:</strong> product, feature, concept, company, person</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-link"></i> Links Table</h5>
+                        <p><strong>Purpose:</strong> Stores relationships between nodes<br>
+                        <strong>Fields:</strong> id (PK), session_id (FK), source, target, relation</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-comments"></i> Messages Table</h5>
+                        <p><strong>Purpose:</strong> Stores chat conversation history<br>
+                        <strong>Fields:</strong> id (PK), session_id (FK), role, content, timestamp</p>
+                    </div>
+                </div>
+
+                <div class="architecture-section">
+                    <h3><i class="fa-solid fa-plug"></i> API Endpoints</h3>
+                    <div class="api-endpoint">
+                        <span class="api-method method-get">GET</span>
+                        <span class="api-path">/api/health</span>
+                        <div class="api-description">Health check endpoint</div>
+                    </div>
+                    <div class="api-endpoint">
+                        <span class="api-method method-post">POST</span>
+                        <span class="api-path">/api/search</span>
+                        <div class="api-description">Search web for URLs using DuckDuckGo</div>
+                    </div>
+                    <div class="api-endpoint">
+                        <span class="api-method method-post">POST</span>
+                        <span class="api-path">/api/scrape</span>
+                        <div class="api-description">Scrape content from URLs</div>
+                    </div>
+                    <div class="api-endpoint">
+                        <span class="api-method method-post">POST</span>
+                        <span class="api-path">/api/graph/generate</span>
+                        <div class="api-description">Generate knowledge graph for a topic</div>
+                    </div>
+                    <div class="api-endpoint">
+                        <span class="api-method method-post">POST</span>
+                        <span class="api-path">/api/graph/expand</span>
+                        <div class="api-description">Expand a specific node</div>
+                    </div>
+                    <div class="api-endpoint">
+                        <span class="api-method method-post">POST</span>
+                        <span class="api-path">/api/chat</span>
+                        <div class="api-description">Chat with AI using graph context</div>
+                    </div>
+                </div>
+
+                <div class="architecture-section">
+                    <h3><i class="fa-solid fa-brain"></i> AI Integration</h3>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-robot"></i> Google Gemini 2.5 Flash Experimental</h5>
+                        <p><strong>Model:</strong> gemini-2.5-flash-exp (used globally for all operations)<br>
+                        <strong>Features:</strong> Structured JSON output, schema validation, tool integration<br>
+                        <strong>Use Cases:</strong> Graph generation, expansion, and RAG chat</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-diagram-project"></i> Graph Generation Process</h5>
+                        <p>1. Accept topic + optional web context<br>
+                        2. Send structured prompt to Gemini with JSON schema<br>
+                        3. Generate 25-30 nodes with semantic groups<br>
+                        4. Generate 30-40 relationships<br>
+                        5. Validate and store in MySQL</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-arrows-spin"></i> Graph Expansion Algorithm</h5>
+                        <p>1. Identify target node<br>
+                        2. Fetch existing graph state<br>
+                        3. Generate 5-8 new related entities<br>
+                        4. Auto-create missing nodes<br>
+                        5. Mark new nodes for UI highlighting</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-message"></i> RAG Chat System</h5>
+                        <p><strong>Context:</strong> Serialize nodes/links into text<br>
+                        <strong>Citations:</strong> [cite: node_id] format<br>
+                        <strong>Tools:</strong> Google Search integration</p>
+                    </div>
+                </div>
+
+                <div class="architecture-section">
+                    <h3><i class="fa-solid fa-globe"></i> Web Integration</h3>
+                    <div class="tech-detail">
+                        <h5><i class="fa-brands fa-searchengin"></i> DuckDuckGo Search</h5>
+                        <p><strong>Config:</strong> IN (India) region, max 5 results<br>
+                        <strong>Retry:</strong> 3 attempts with delays<br>
+                        <strong>Fallback:</strong> Wikipedia URL</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-spider"></i> Web Scraping</h5>
+                        <p><strong>Library:</strong> BeautifulSoup4 + Requests<br>
+                        <strong>Limits:</strong> Top 3 URLs, 2000 chars/page<br>
+                        <strong>Timeout:</strong> 5 seconds</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Zia Bot Technical Modal -->
+    <div id="modal-ziabot" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fa-solid fa-robot"></i> Zia RAG Bot - Technical Architecture</h2>
+                <button class="close-btn" onclick="closeModal('ziabot')">
+                    <i class="fa-solid fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="architecture-section">
+                    <h3><i class="fa-solid fa-layer-group"></i> System Architecture</h3>
+                    <div class="architecture-diagram-image">
+                        <img src="diagrams/ziabot-architecture.png" alt="Zia RAG Bot System Architecture" class="architecture-img">
+                        <p class="diagram-note">Hybrid RAG system combining BM25 keyword search, Hnswlib vector embeddings, and Reciprocal Rank Fusion for optimal retrieval accuracy.</p>
+                    </div>
+                </div>
+
+                <div class="architecture-section">
+                    <h3><i class="fa-solid fa-arrows-split-up-and-left"></i> Hybrid RAG Pipeline</h3>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-magnifying-glass"></i> BM25 Keyword Search</h5>
+                        <p><strong>Library:</strong> rank_bm25 (BM25Okapi)<br>
+                        <strong>Preprocessing:</strong> NLTK tokenization, stopword removal, lowercasing<br>
+                        <strong>Scoring:</strong> TF-IDF based relevance scoring<br>
+                        <strong>Threshold:</strong> Score > 1.0 for relevance<br>
+                        <strong>Use Case:</strong> Exact keyword matching for specific queries</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-vector-square"></i> Hnswlib Vector Search</h5>
+                        <p><strong>Library:</strong> hnswlib (Hierarchical Navigable Small World)<br>
+                        <strong>Embeddings:</strong> Google Gemini text-embedding-004 (768 dimensions)<br>
+                        <strong>Index:</strong> Cosine similarity space<br>
+                        <strong>Parameters:</strong> ef_construction=200, M=16, ef=50<br>
+                        <strong>Batch Processing:</strong> 10 texts per embedding batch<br>
+                        <strong>Use Case:</strong> Semantic similarity for conceptual queries</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-shuffle"></i> Reciprocal Rank Fusion (RRF)</h5>
+                        <p><strong>Algorithm:</strong> Combines BM25 and vector search results<br>
+                        <strong>Formula:</strong> score = 1/(k + rank), k=60<br>
+                        <strong>Process:</strong> Merge results from both methods, sum scores, re-rank<br>
+                        <strong>Output:</strong> Top-5 most relevant documents<br>
+                        <strong>Benefit:</strong> Balances keyword precision with semantic understanding</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-graduation-cap"></i> Supervised Learning Layer</h5>
+                        <p><strong>Storage:</strong> supervised_learning.json<br>
+                        <strong>Matching:</strong> BM25 on query variations<br>
+                        <strong>Threshold:</strong> Score > 1.0 for supervised match<br>
+                        <strong>Priority:</strong> Supervised responses override RAG search<br>
+                        <strong>Training:</strong> Admin can add query-response pairs with auto-generated variations</p>
+                    </div>
+                </div>
+
+                <div class="architecture-section">
+                    <h3><i class="fa-solid fa-database"></i> Database Schema</h3>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-comments"></i> conversation_history Table</h5>
+                        <p><strong>Fields:</strong> id, session_id, conversation_id, user_input, bot_response, timestamp<br>
+                        <strong>Indexes:</strong> session_id, conversation_id<br>
+                        <strong>Purpose:</strong> Store all chat messages grouped by conversation<br>
+                        <strong>Limit:</strong> MAX_MEMORY = 25 messages per query context</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-thumbs-up"></i> feedback Table</h5>
+                        <p><strong>Fields:</strong> id, session_id, user_input, bot_response, feedback_text, feedback_type, timestamp<br>
+                        <strong>Purpose:</strong> Collect user feedback (like/dislike) for model improvement<br>
+                        <strong>Types:</strong> Positive, negative, custom text feedback</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-clock"></i> Session Management</h5>
+                        <p><strong>Session ID:</strong> UUID per browser (Flask session)<br>
+                        <strong>Conversation ID:</strong> UUID per chat thread<br>
+                        <strong>Isolation:</strong> Per-browser conversation history<br>
+                        <strong>Cleanup:</strong> Automatic deletion of entries older than 24 hours<br>
+                        <strong>Persistence:</strong> 7-day session lifetime</p>
+                    </div>
+                </div>
+
+                <div class="architecture-section">
+                    <h3><i class="fa-solid fa-brain"></i> AI Integration</h3>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-robot"></i> Google Gemini 2.5 Flash</h5>
+                        <p><strong>Model:</strong> gemini-2.5-flash<br>
+                        <strong>Context Window:</strong> Includes last 25 conversation messages<br>
+                        <strong>Prompt Engineering:</strong> Zoho CRM expert persona with citation instructions<br>
+                        <strong>Citations:</strong> Inline [1], [2] format mapped to source indices<br>
+                        <strong>Fallback:</strong> Out-of-scope detection for non-CRM queries</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-wand-sparkles"></i> Query Variations</h5>
+                        <p>Gemini generates 5+ variations of user queries. Used for supervised learning matching. Improves recall for similar phrasings. Stored with training data for future matches.</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-spell-check"></i> Response Formatting</h5>
+                        <p>Gemini improves grammar and presentation. Maintains core meaning without adding information. Applied to supervised learning responses. Ensures professional, consistent output.</p>
+                    </div>
+                </div>
+
+                <div class="architecture-section">
+                    <h3><i class="fa-solid fa-file-import"></i> Document Processing</h3>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-file-code"></i> Data Sources</h5>
+                        <p><strong>local_documents3.json:</strong> Zoho CRM knowledge base articles<br>
+                        <strong>custom_knowledge.json:</strong> User-trained custom responses<br>
+                        <strong>supervised_learning.json:</strong> Admin-curated Q&A pairs<br>
+                        <strong>Format:</strong> JSON with text, url, snippet fields</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-broom"></i> Text Preprocessing</h5>
+                        <p><strong>NLTK:</strong> Punkt tokenizer, stopwords corpus<br>
+                        <strong>Steps:</strong> Lowercase, punctuation removal, tokenization, stopword filtering<br>
+                        <strong>Stopwords:</strong> English stopwords from NLTK<br>
+                        <strong>Output:</strong> Clean tokens for BM25 indexing</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-spider"></i> Web Scraping</h5>
+                        <p><strong>Script:</strong> scrape_kb.py (Streamlit app)<br>
+                        <strong>Target:</strong> Zoho CRM Knowledge Base<br>
+                        <strong>Features:</strong> Recursive discovery, SQLite persistence, CSV/JSON export<br>
+                        <strong>Libraries:</strong> BeautifulSoup4, requests, pandas</p>
+                    </div>
+                </div>
+
+                <div class="architecture-section">
+                    <h3><i class="fa-solid fa-palette"></i> Frontend Features</h3>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-comments"></i> Conversation Management</h5>
+                        <p>Sidebar with conversation list. Switch between multiple chat threads. Create new conversations. Each conversation maintains separate context. Last 25 messages shown in sidebar.</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-rotate"></i> Regenerate & Edit</h5>
+                        <p>Regenerate last response with same query. Edit previous messages. Updates database with new response. Maintains conversation continuity.</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-link"></i> Citation Tooltips</h5>
+                        <p>Inline citation markers [1], [2]. Hover tooltips with source snippets. Zoho favicon for branding. Clickable links to source URLs. Source section at bottom of response.</p>
+                    </div>
+                </div>
+
+                <div class="architecture-section">
+                    <h3><i class="fa-solid fa-user-shield"></i> Admin Dashboard</h3>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-chart-bar"></i> Analytics</h5>
+                        <p>View all conversations and feedback. Filter by date range and search query. Export data for analysis. Monitor user interactions. Track feedback sentiment.</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-graduation-cap"></i> Supervised Learning</h5>
+                        <p>Add custom Q&A pairs. Auto-generate query variations with Gemini. Format responses for consistency. Immediate effect on bot responses. Priority over RAG search.</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-chalkboard-user"></i> Interactive Training</h5>
+                        <p>Teach bot through conversation. System asks follow-up questions. Saves conversation as custom knowledge. Reloads indices automatically. Builds domain-specific expertise.</p>
+                    </div>
+                </div>
+
+                <div class="architecture-section">
+                    <h3><i class="fa-solid fa-shield"></i> Security & Performance</h3>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-lock"></i> Session Isolation</h5>
+                        <p>UUID-based session IDs per browser. Conversation IDs for thread grouping. Secure session cookies (HttpOnly, SameSite). 7-day session persistence. Automatic cleanup of old data.</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-gauge-high"></i> Performance Optimizations</h5>
+                        <p>In-memory BM25 and Hnswlib indices. Batch embedding generation (10 per batch). Efficient numpy operations. MySQL connection pooling. Minimal frontend JavaScript.</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-bug"></i> Error Handling</h5>
+                        <p>Comprehensive logging with traceback. Graceful fallbacks for API failures. Database connection retry logic. User-friendly error messages. JSON fallback if MySQL unavailable.</p>
+                    </div>
+                </div>
+
+                <div class="architecture-section">
+                    <h3><i class="fa-solid fa-code"></i> Tech Stack</h3>
+                    <div class="layer-content">
+                        <div class="component">Python 3.8+</div>
+                        <div class="component">Flask</div>
+                        <div class="component">Google Gemini 2.5 Flash</div>
+                        <div class="component">MySQL + mysql-connector-python</div>
+                        <div class="component">BM25Okapi (rank_bm25)</div>
+                        <div class="component">Hnswlib</div>
+                        <div class="component">NLTK</div>
+                        <div class="component">NumPy</div>
+                    </div>
+                </div>
+
+                <div class="architecture-section">
+                    <h3><i class="fa-solid fa-rocket"></i> Deployment</h3>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-server"></i> Production Setup</h5>
+                        <p>PythonAnywhere hosting. MySQL database integration. Environment variables for API keys. Static file serving. HTTPS enabled.</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-database"></i> Data Persistence</h5>
+                        <p>MySQL for conversation history. JSON files for training data. Pickle for index serialization (future). Automatic database table creation. Migration support for schema updates.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Arbor Technical Modal -->
+    <div id="modal-arbor" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fa-solid fa-magnifying-glass-chart"></i> Arbor - Technical Architecture</h2>
+                <button class="close-btn" onclick="closeModal('arbor')">
+                    <i class="fa-solid fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="architecture-section">
+                    <h3><i class="fa-solid fa-layer-group"></i> System Architecture</h3>
+                    <div class="architecture-diagram-image">
+                        <img src="diagrams/arbor-architecture.png" alt="Arbor System Architecture" class="architecture-img">
+                        <p class="diagram-note">Dual-mode research engine with real-time web scraping, DuckDuckGo search, and mandatory citation grounding using Gemini 2.5 Flash.</p>
+                    </div>
+                </div>
+
+                <div class="architecture-section">
+                    <h3><i class="fa-solid fa-bolt"></i> Dual-Mode Research System</h3>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-magnifying-glass"></i> Quick Search Mode</h5>
+                        <p><strong>Speed:</strong> <3s Time-to-First-Token<br>
+                        <strong>Sources:</strong> 10 search results<br>
+                        <strong>Scraping:</strong> Top 3 URLs, 2000 chars/page<br>
+                        <strong>Output:</strong> Concise answer with inline citations<br>
+                        <strong>Use Case:</strong> Rapid fact-retrieval and quick lookups</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-microscope"></i> Deep Research Mode</h5>
+                        <p><strong>Depth:</strong> Comprehensive analysis<br>
+                        <strong>Sources:</strong> 25 search results<br>
+                        <strong>Scraping:</strong> Up to 10+ dense sources, 15000 chars/page<br>
+                        <strong>Output:</strong> 2500-4000 word structured report<br>
+                        <strong>Sections:</strong> Executive Summary, Introduction, Key Findings, Analysis, Recommendations, Conclusion<br>
+                        <strong>Use Case:</strong> In-depth research and comprehensive reports</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-arrows-split-up-and-left"></i> Chunked Generation</h5>
+                        <p>Deep research uses chunked generation to avoid token limits. Part 1: Executive Summary + Introduction + Key Findings (first half). Part 2: Key Findings (second half) + Analysis + Recommendations + Conclusion. Fallback strategy ensures complete reports even if single generation fails.</p>
+                    </div>
+                </div>
+
+                <div class="architecture-section">
+                    <h3><i class="fa-solid fa-shield-halved"></i> Anti-Hallucination System</h3>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-check-double"></i> Grounding Mechanism</h5>
+                        <p>Every claim must be grounded in scraped sources. Inline citations [N] format mapped to source indices. Gemini instructed to cite specific sources. Responses without citations are rejected.</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-brain"></i> Chain-of-Thought Reasoning</h5>
+                        <p>Mandatory &lt;thinking&gt; block before response. AI plans search strategy and analyzes sources. Extracted and logged for debugging. Improves response quality and reduces hallucinations.</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-link"></i> Source Verification</h5>
+                        <p>URL accessibility verification. Content extraction with Trafilatura + BeautifulSoup fallback. User-Agent rotation to avoid blocking. 8-second timeout per request. Polite 0.3s delay between requests.</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-chart-simple"></i> Quality Metrics</h5>
+                        <p><strong>Hallucination Reduction:</strong> ~90% vs raw zero-shot prompting<br>
+                        <strong>Citation Accuracy:</strong> 95%+ (inline markers match sources)<br>
+                        <strong>Source Diversity:</strong> Multi-source aggregation<br>
+                        <strong>Freshness:</strong> Real-time web scraping</p>
+                    </div>
+                </div>
+
+                <div class="architecture-section">
+                    <h3><i class="fa-solid fa-spider"></i> Web Scraping Pipeline</h3>
+                    <div class="tech-detail">
+                        <h5><i class="fa-brands fa-searchengin"></i> DuckDuckGo Search</h5>
+                        <p><strong>Library:</strong> duckduckgo_search (DDGS)<br>
+                        <strong>Region:</strong> India (in-en) for better relevance<br>
+                        <strong>Retry Logic:</strong> 3 attempts with 1s delays<br>
+                        <strong>Caching:</strong> 5-minute TTL to reduce API calls<br>
+                        <strong>Fallback:</strong> Wikipedia URL if search fails</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-file-code"></i> Content Extraction</h5>
+                        <p><strong>Primary:</strong> Trafilatura (optimized for article extraction)<br>
+                        <strong>Fallback:</strong> BeautifulSoup4 with intelligent container detection<br>
+                        <strong>Containers:</strong> article, main, #content, .content, .entry-content<br>
+                        <strong>Filtering:</strong> Remove scripts, styles, nav, footer<br>
+                        <strong>Limits:</strong> 15KB per page (Quick), 15KB per page (Deep)</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-shield"></i> Anti-Blocking Measures</h5>
+                        <p>6 rotating User-Agents (Chrome, Firefox, Edge, Safari). Browser-like headers (Accept, Accept-Language, DNT). Connection keep-alive. Polite crawling with delays. Timeout handling (8s per request).</p>
+                    </div>
+                </div>
+
+                <div class="architecture-section">
+                    <h3><i class="fa-solid fa-database"></i> Database & Persistence</h3>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-table"></i> Chats Table</h5>
+                        <p><strong>Fields:</strong> id (UUID), user_id, created_at, last_active, deep_dive_count, mode<br>
+                        <strong>Indexes:</strong> session_id, conversation_id, created_at, last_active<br>
+                        <strong>Purpose:</strong> Track conversation threads and user sessions</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-comments"></i> Messages Table</h5>
+                        <p><strong>Fields:</strong> id, chat_id, query, answer_raw, answer_html, sources (JSON), follow_up_questions (JSON), research_depth, timestamp<br>
+                        <strong>Foreign Key:</strong> chat_id → chats(id) ON DELETE CASCADE<br>
+                        <strong>Purpose:</strong> Store complete conversation history with sources</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-memory"></i> In-Memory Caching</h5>
+                        <p><strong>Search Cache:</strong> 5-minute TTL, max 100 entries<br>
+                        <strong>Report Store:</strong> Max 100 items, FIFO eviction<br>
+                        <strong>Fallback:</strong> JSON file storage if MySQL unavailable</p>
+                    </div>
+                </div>
+
+                <div class="architecture-section">
+                    <h3><i class="fa-solid fa-file-export"></i> Export Capabilities</h3>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-file-word"></i> DOCX Export</h5>
+                        <p>python-docx library. Markdown to formatted paragraphs. Heading detection (###). List support (bullets, numbered). Conditional sources section (References for Deep, Sources for Quick). Professional formatting with Arial 11pt.</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-file-pdf"></i> PDF Export</h5>
+                        <p>xhtml2pdf (pisa) library. HTML to PDF conversion. Custom CSS styling. Citation markers with superscript. Page numbers and headers. A4 portrait with 2cm margins. Source list with conditional formatting.</p>
+                    </div>
+                </div>
+
+                <div class="architecture-section">
+                    <h3><i class="fa-solid fa-mobile-screen"></i> Mobile-First UX</h3>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-palette"></i> Design System</h5>
+                        <p><strong>Theme:</strong> Dark mode default, light mode toggle<br>
+                        <strong>Colors:</strong> CSS variables for easy theming<br>
+                        <strong>Typography:</strong> Inter font family<br>
+                        <strong>Spacing:</strong> Consistent 8px grid system<br>
+                        <strong>Radius:</strong> 4px (sm), 8px (md), 12px (lg), 24px (xl)</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-mobile-screen-button"></i> Responsive Breakpoints</h5>
+                        <p>Desktop: Sidebar + main content. Tablet: Collapsible sidebar. Mobile: Overlay sidebar with hamburger menu. Touch-optimized buttons (44px min). Bottom navigation for mobile. Glassmorphism effects.</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-bolt"></i> Performance</h5>
+                        <p>Server-Sent Events for streaming responses. Lazy loading for conversation history. Debounced textarea auto-resize. Optimized CSS with variables. Minimal JavaScript bundle. <3s initial load time.</p>
+                    </div>
+                </div>
+
+                <div class="architecture-section">
+                    <h3><i class="fa-solid fa-shield"></i> Security & Rate Limiting</h3>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-gauge-high"></i> Flask-Limiter</h5>
+                        <p>Rate limiting per IP address. Configurable limits per endpoint. Prevents abuse and DoS attacks. Graceful error messages.</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-lock"></i> Input Validation</h5>
+                        <p>Max query length: 2000 characters. Max chat messages: 10 per thread. HTML escaping for user inputs. SQL injection prevention (parameterized queries). XSS protection.</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-clock"></i> Session Management</h5>
+                        <p>24-hour session cleanup. User-specific conversation isolation. Secure session cookies. CSRF protection.</p>
+                    </div>
+                </div>
+
+                <div class="architecture-section">
+                    <h3><i class="fa-solid fa-code"></i> Tech Stack</h3>
+                    <div class="layer-content">
+                        <div class="component">Python 3.8+</div>
+                        <div class="component">Flask + Gunicorn</div>
+                        <div class="component">Google Gemini 2.5 Flash</div>
+                        <div class="component">MySQL + PyMySQL</div>
+                        <div class="component">DuckDuckGo Search</div>
+                        <div class="component">Trafilatura + BeautifulSoup4</div>
+                        <div class="component">Mistune (Markdown)</div>
+                        <div class="component">python-docx + xhtml2pdf</div>
+                    </div>
+                </div>
+
+                <div class="architecture-section">
+                    <h3><i class="fa-solid fa-rocket"></i> Production Deployment</h3>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-server"></i> PythonAnywhere Hosting</h5>
+                        <p>WSGI server with Gunicorn. Environment variable configuration. MySQL database integration. Static file serving. HTTPS enabled.</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-chart-line"></i> Monitoring & Logging</h5>
+                        <p>Python logging module. INFO level for development. WARNING level for production. Request/response logging. Error tracking with stack traces.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DataDialog Technical Modal -->
+    <div id="modal-datadialog" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fa-solid fa-chart-mixed"></i> DataDialog - Technical Architecture</h2>
+                <button class="close-btn" onclick="closeModal('datadialog')">
+                    <i class="fa-solid fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="architecture-section">
+                    <h3><i class="fa-solid fa-layer-group"></i> System Architecture</h3>
+                    <div class="architecture-diagram">
+                        <div class="layer">
+                            <h4><i class="fa-solid fa-desktop"></i> Frontend Layer</h4>
+                            <div class="layer-content">
+                                <div class="component">Jinja2 Templates</div>
+                                <div class="component">Vanilla JavaScript</div>
+                                <div class="component">Plotly.js Charts</div>
+                                <div class="component">Drag-and-Drop UI</div>
+                            </div>
+                        </div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="layer">
+                            <h4><i class="fa-solid fa-server"></i> Application Layer</h4>
+                            <div class="layer-content">
+                                <div class="component">Flask Web Framework</div>
+                                <div class="component">Flask-Login (Auth)</div>
+                                <div class="component">Flask-CORS</div>
+                                <div class="component">CSRF Protection</div>
+                            </div>
+                        </div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="layer">
+                            <h4><i class="fa-solid fa-brain"></i> AI Service Layer</h4>
+                            <div class="layer-content">
+                                <div class="component">OpenAI GPT</div>
+                                <div class="component">Anthropic Claude</div>
+                                <div class="component">Google Gemini</div>
+                                <div class="component">Ollama (Local)</div>
+                            </div>
+                        </div>
+                        <div class="flow-arrow">↓</div>
+                        <div class="layer">
+                            <h4><i class="fa-solid fa-database"></i> Data Layer</h4>
+                            <div class="layer-content">
+                                <div class="component">SQLAlchemy ORM</div>
+                                <div class="component">MySQL Database</div>
+                                <div class="component">Flask-Migrate</div>
+                                <div class="component">Encrypted Storage</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="architecture-section">
+                    <h3><i class="fa-solid fa-database"></i> Database Schema</h3>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-user"></i> Users Table</h5>
+                        <p><strong>Purpose:</strong> User authentication and profiles<br>
+                        <strong>Fields:</strong> id, username, email, password_hash, created_at<br>
+                        <strong>Security:</strong> Bcrypt password hashing</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-table"></i> Datasets Table</h5>
+                        <p><strong>Purpose:</strong> Uploaded data files metadata<br>
+                        <strong>Fields:</strong> id, user_id, filename, file_path, format, rows, columns<br>
+                        <strong>Formats:</strong> CSV, XLSX, XLS, JSON, Parquet, TSV</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-key"></i> API Keys Table</h5>
+                        <p><strong>Purpose:</strong> Encrypted AI provider credentials<br>
+                        <strong>Fields:</strong> id, user_id, provider, encrypted_key<br>
+                        <strong>Encryption:</strong> Fernet symmetric encryption</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-chart-bar"></i> Charts & Dashboards</h5>
+                        <p><strong>Charts:</strong> Saved visualizations with config JSON<br>
+                        <strong>Dashboards:</strong> Custom layouts with drag-and-drop positioning<br>
+                        <strong>Conversations:</strong> Chat history with AI responses</p>
+                    </div>
+                </div>
+
+                <div class="architecture-section">
+                    <h3><i class="fa-solid fa-plug"></i> API Endpoints</h3>
+                    <div class="api-endpoint">
+                        <span class="api-method method-post">POST</span>
+                        <span class="api-path">/api/auth/register</span>
+                        <div class="api-description">Register new user account</div>
+                    </div>
+                    <div class="api-endpoint">
+                        <span class="api-method method-post">POST</span>
+                        <span class="api-path">/api/data/upload</span>
+                        <div class="api-description">Upload dataset (multi-format support)</div>
+                    </div>
+                    <div class="api-endpoint">
+                        <span class="api-method method-post">POST</span>
+                        <span class="api-path">/api/chat/query</span>
+                        <div class="api-description">Send natural language query to AI</div>
+                    </div>
+                    <div class="api-endpoint">
+                        <span class="api-method method-post">POST</span>
+                        <span class="api-path">/api/charts/generate</span>
+                        <div class="api-description">Generate Plotly visualization</div>
+                    </div>
+                    <div class="api-endpoint">
+                        <span class="api-method method-post">POST</span>
+                        <span class="api-path">/api/dashboards/create</span>
+                        <div class="api-description">Create custom dashboard</div>
+                    </div>
+                </div>
+
+                <div class="architecture-section">
+                    <h3><i class="fa-solid fa-brain"></i> Multi-Provider AI System</h3>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-plug-circle-check"></i> Provider Abstraction</h5>
+                        <p>Unified interface for OpenAI, Claude, Gemini, and Ollama. Users can switch providers without code changes.</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-shield-halved"></i> Secure Key Management</h5>
+                        <p>API keys encrypted with Fernet (symmetric encryption). Keys never stored in plaintext. Per-user encryption keys.</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-code"></i> Query Processing</h5>
+                        <p>1. Parse natural language query<br>
+                        2. Analyze dataset schema<br>
+                        3. Generate Python/Pandas code<br>
+                        4. Execute safely in sandbox<br>
+                        5. Return results with visualizations</p>
+                    </div>
+                </div>
+
+                <div class="architecture-section">
+                    <h3><i class="fa-solid fa-chart-line"></i> Data Processing Pipeline</h3>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-file-import"></i> Multi-Format Ingestion</h5>
+                        <p>Pandas-based parsing for CSV, Excel, JSON, Parquet, TSV. Automatic type inference and validation.</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-chart-simple"></i> Plotly Visualizations</h5>
+                        <p>Interactive charts: bar, line, scatter, pie, heatmap, box plots. Responsive design with zoom/pan capabilities.</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-table-cells"></i> Dashboard Builder</h5>
+                        <p>Drag-and-drop interface. Grid-based layout system. Real-time chart updates. Export to PDF/PNG.</p>
+                    </div>
+                </div>
+
+                <div class="architecture-section">
+                    <h3><i class="fa-solid fa-code"></i> Tech Stack</h3>
+                    <div class="layer-content">
+                        <div class="component">Python 3.8+</div>
+                        <div class="component">Flask + SQLAlchemy</div>
+                        <div class="component">MySQL</div>
+                        <div class="component">Pandas + NumPy</div>
+                        <div class="component">Plotly.js</div>
+                        <div class="component">Cryptography (Fernet)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Anne's Diary Technical Modal -->
+    <div id="modal-annesdiary" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fa-solid fa-book-open"></i> Anne's Diary - Technical Architecture</h2>
+                <button class="close-btn" onclick="closeModal('annesdiary')">
+                    <i class="fa-solid fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="architecture-section">
+                    <h3><i class="fa-solid fa-layer-group"></i> System Architecture</h3>
+                    <div class="architecture-diagram-image">
+                        <img src="diagrams/annesdiary-architecture.png" alt="Anne's Diary System Architecture" class="architecture-img">
+                        <p class="diagram-note">Interactive educational website with AI-powered chat using Google Gemini, featuring NotebookLM-generated multimedia content.</p>
+                    </div>
+                </div>
+
+                <div class="architecture-section">
+                    <h3><i class="fa-solid fa-wand-magic-sparkles"></i> AI Chat System</h3>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-robot"></i> Google Gemini 2.5 Flash</h5>
+                        <p><strong>Model:</strong> gemini-2.0-flash-exp<br>
+                        <strong>Features:</strong> Fast response, context-aware, character roleplay<br>
+                        <strong>Temperature:</strong> 0.7 for natural conversation</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-file-lines"></i> Context Extraction</h5>
+                        <p>Python script (generate_context.py) extracts text from PDF using PyPDF2. Converts to JavaScript object for client-side access. Includes diary entries, historical events, and biographical information.</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-user"></i> Character Persona</h5>
+                        <p>System prompt configures AI to respond as Anne Frank. Maintains historical accuracy while being conversational. References diary entries and personal experiences. Appropriate tone for educational context.</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-comments"></i> Conversation Flow</h5>
+                        <p>1. User enters API key (stored in localStorage)<br>
+                        2. User sends message<br>
+                        3. Context injected into prompt<br>
+                        4. Gemini generates response<br>
+                        5. Streaming display for natural feel</p>
+                    </div>
+                </div>
+
+                <div class="architecture-section">
+                    <h3><i class="fa-solid fa-microphone"></i> Google NotebookLM Integration</h3>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-video"></i> AI-Generated Video Content</h5>
+                        <p>Documentary video created using Google's NotebookLM. Converts written content into engaging video format. Natural narration with visual storytelling. Automated production pipeline.</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-headphones"></i> AI-Generated Audio Narration</h5>
+                        <p>Full story audio (The_Full_Story_of_Anne_Frank_s_Diary.m4a) generated by NotebookLM. Natural-sounding voice synthesis. Contextual emphasis and pacing. Professional podcast-quality output.</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-wand-sparkles"></i> Content Transformation</h5>
+                        <p>NotebookLM analyzes source PDF and generates multimedia content. Maintains historical accuracy while creating engaging formats. Automated script generation and voice synthesis. Reduces production time from weeks to hours.</p>
+                    </div>
+                </div>
+
+                <div class="architecture-section">
+                    <h3><i class="fa-solid fa-palette"></i> Design & UX</h3>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-font"></i> Typography</h5>
+                        <p><strong>Headings:</strong> Cormorant Garamond (elegant serif)<br>
+                        <strong>Body:</strong> Montserrat (clean sans-serif)<br>
+                        <strong>Style:</strong> Historical yet modern aesthetic</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-film"></i> Animations</h5>
+                        <p>Fade-in effects on scroll. Loading screen with quote. Smooth transitions. Parallax hero section. Hover effects on interactive elements.</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-mobile-screen"></i> Responsive Design</h5>
+                        <p>Mobile-first approach. Flexible grid layouts. Touch-friendly navigation. Optimized media loading. Hamburger menu for mobile.</p>
+                    </div>
+                </div>
+
+                <div class="architecture-section">
+                    <h3><i class="fa-solid fa-photo-film"></i> Multimedia Integration</h3>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-video"></i> Video Content</h5>
+                        <p>Documentary video (The_Diary_of_a_Young_Girl.mp4). HTML5 video player with controls. Poster image for preview. Responsive sizing.</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-headphones"></i> Audio Content</h5>
+                        <p>Full story narration (The_Full_Story_of_Anne_Frank_s_Diary.m4a). Custom audio player styling. Play/pause controls. Progress bar.</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-file-pdf"></i> PDF Document</h5>
+                        <p>Study guide (anne_frank_-_the_diary_of_a_young_girl_book_website.pdf). Opens in new tab. Downloadable resource. Educational supplement.</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-image"></i> Visual Assets</h5>
+                        <p>Hero image, mindmap visualization, historical photos. Optimized for web. Sepia filters for historical feel. Lazy loading for performance.</p>
+                    </div>
+                </div>
+
+                <div class="architecture-section">
+                    <h3><i class="fa-solid fa-code"></i> Tech Stack</h3>
+                    <div class="layer-content">
+                        <div class="component">HTML5</div>
+                        <div class="component">CSS3</div>
+                        <div class="component">Vanilla JavaScript</div>
+                        <div class="component">Google Gemini API</div>
+                        <div class="component">Google NotebookLM</div>
+                        <div class="component">Font Awesome Icons</div>
+                        <div class="component">Google Fonts</div>
+                    </div>
+                </div>
+
+                <div class="architecture-section">
+                    <h3><i class="fa-solid fa-graduation-cap"></i> Educational Features</h3>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-book"></i> Biography Section</h5>
+                        <p>Comprehensive life story. Historical context. Timeline of events. Personal development narrative.</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-comments"></i> Interactive Chat</h5>
+                        <p>Ask questions about Anne's life. Discuss diary themes. Learn about WWII history. Personal connection to historical figure.</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-diagram-project"></i> Mind Map</h5>
+                        <p>Visual representation of themes. Connections between concepts. Interactive exploration. Learning aid for students.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- EduElements Technical Modal -->
+    <div id="modal-eduelements" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fa-solid fa-graduation-cap"></i> EduElements - Technical Architecture</h2>
+                <button class="close-btn" onclick="closeModal('eduelements')">
+                    <i class="fa-solid fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="architecture-section">
+                    <h3><i class="fa-solid fa-layer-group"></i> Two-Sided Marketplace Architecture</h3>
+                    <div class="architecture-diagram-image">
+                        <img src="diagrams/eduelements-architecture.png" alt="EduElements Marketplace Architecture" class="architecture-img">
+                        <p class="diagram-note">Two-sided marketplace with gamification engine driving 45% course completion (vs 15% industry average) through behavioral psychology triggers.</p>
+                    </div>
+                </div>
+
+                <div class="architecture-section">
+                    <h3><i class="fa-solid fa-gamepad"></i> Gamification Engine</h3>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-fire"></i> Streak System</h5>
+                        <p><strong>Mechanism:</strong> Daily login + lesson completion<br>
+                        <strong>Rewards:</strong> Bonus credits at 7, 30, 100 days<br>
+                        <strong>Psychology:</strong> Loss aversion (don't break the streak!)<br>
+                        <strong>Impact:</strong> 3x increase in daily active users</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-trophy"></i> Achievement Badges</h5>
+                        <p><strong>Types:</strong> Course completion, perfect scores, referrals<br>
+                        <strong>Display:</strong> Profile showcase, leaderboards<br>
+                        <strong>Social:</strong> Shareable on LinkedIn, Twitter<br>
+                        <strong>Impact:</strong> 45% completion rate (vs 15% industry avg)</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-gem"></i> Credit Economy</h5>
+                        <p><strong>Earning:</strong> Lessons (50 LC), Quizzes (100 LC), Referrals (500 LC)<br>
+                        <strong>Spending:</strong> Gift cards, tech gadgets, course discounts<br>
+                        <strong>Exchange Rate:</strong> 1 LC = ₹1 (India-localized)<br>
+                        <strong>Fraud Prevention:</strong> KYC verification, transaction limits</p>
+                    </div>
+                </div>
+
+                <div class="architecture-section">
+                    <h3><i class="fa-solid fa-chart-line"></i> Behavioral Psychology Triggers</h3>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-dice"></i> Variable Rewards</h5>
+                        <p>Random bonus credits (50-200 LC) on lesson completion - dopamine-driven engagement</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-chart-line"></i> Progress Visualization</h5>
+                        <p>Circular progress bars, XP levels, skill trees - visual feedback loops</p>
+                    </div>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-users"></i> Social Proof</h5>
+                        <p>Leaderboards, peer comparisons, referral contests - competitive motivation</p>
+                    </div>
+                </div>
+
+                <div class="architecture-section">
+                    <h3><i class="fa-solid fa-code"></i> Tech Stack</h3>
+                    <div class="layer-content">
+                        <div class="component">HTML5/CSS3/JS</div>
+                        <div class="component">Tailwind CSS</div>
+                        <div class="component">Local Storage API</div>
+                        <div class="component">Service Workers</div>
+                        <div class="component">Responsive Design</div>
+                        <div class="component">PWA Features</div>
+                    </div>
+                </div>
+
+                <div class="architecture-section">
+                    <h3><i class="fa-solid fa-mobile"></i> Mobile-First Design</h3>
+                    <div class="tech-detail">
+                        <h5><i class="fa-solid fa-mobile-screen"></i> Design Principles</h5>
+                        <p>1. Thumb-friendly navigation (bottom nav bar)<br>
+                        2. Card-based UI for easy scrolling<br>
+                        3. Minimal text input (tap-based interactions)<br>
+                        4. Optimized for 3G networks (<500KB initial load)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(projectId) {
+            const modal = document.getElementById('modal-' + projectId);
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeModal(projectId) {
+            const modal = document.getElementById('modal-' + projectId);
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        document.querySelectorAll('.modal').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    this.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        });
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.modal.active').forEach(modal => {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                });
+            }
+        });
+    </script>
+</body>
+</html>
